@@ -1,0 +1,21 @@
+version: "3.2"
+
+services:
+   html:
+     image: nginx
+     volumes:
+       - type: bind
+         source: /home/ajfriesen/klavierschule-friesen/html
+         target: /usr/share/nginx/html
+     expose:
+       - 80
+       - 443
+     restart: always
+     environment:
+       VIRTUAL_HOST: klavierschule-friesen.de,klavierschule-emsdetten.de
+     container_name: html
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
