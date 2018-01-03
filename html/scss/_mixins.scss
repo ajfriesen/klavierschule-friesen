@@ -1,14 +1,18 @@
 // Mixins
-// Bootstrap Button Variant
+// Background Cover Mixin
 @mixin background-cover {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
+
+// Font Mixins
 @mixin body-font {
-  font-family: 'Open Sans', serif;
+  font-family: 'Source Sans Pro';
+  font-weight: 300;
 }
 @mixin heading-font {
-  font-family: 'Saira Extra Condensed', serif;
+  font-family: 'Merriweather';
+  font-weight: 700;
 }
