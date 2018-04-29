@@ -1,11 +1,11 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var cleanCSS = require('gulp-clean-css');
 var header = require('gulp-header');
+var cleanCSS = require('gulp-clean-css');
 var rename = require("gulp-rename");
 var uglify = require('gulp-uglify');
-var browserSync = require('browser-sync').create();
 var pkg = require('./package.json');
+var browserSync = require('browser-sync').create();
 
 // Set the banner content
 var banner = ['/*!\n',
@@ -16,11 +16,15 @@ var banner = ['/*!\n',
   ''
 ].join('');
 
-// Copy third-party dependencies from /node_modules into /vendor
+// Copy third party libraries from /node_modules into /vendor
 gulp.task('vendor', function() {
 
   // Bootstrap
-  gulp.src(['./node_modules/bootstrap/dist/**/*'])
+  gulp.src([
+      './node_modules/bootstrap/dist/**/*',
+      '!./node_modules/bootstrap/dist/css/bootstrap-grid*',
+      '!./node_modules/bootstrap/dist/css/bootstrap-reboot*'
+    ])
     .pipe(gulp.dest('./vendor/bootstrap'))
 
   // Font Awesome
@@ -40,9 +44,23 @@ gulp.task('vendor', function() {
     ])
     .pipe(gulp.dest('./vendor/jquery'))
 
-  // Vide.js
-  gulp.src(['./node_modules/vide/dist/*'])
-    .pipe(gulp.dest('./vendor/vide'))
+  // jQuery Easing
+  gulp.src([
+      './node_modules/jquery.easing/*.js'
+    ])
+    .pipe(gulp.dest('./vendor/jquery-easing'))
+
+  // Magnific Popup
+  gulp.src([
+      './node_modules/magnific-popup/dist/*'
+    ])
+    .pipe(gulp.dest('./vendor/magnific-popup'))
+
+  // Scrollreveal
+  gulp.src([
+      './node_modules/scrollreveal/dist/*.js'
+    ])
+    .pipe(gulp.dest('./vendor/scrollreveal'))
 
 });
 
@@ -52,9 +70,6 @@ gulp.task('css:compile', function() {
     .pipe(sass.sync({
       outputStyle: 'expanded'
     }).on('error', sass.logError))
-    .pipe(header(banner, {
-      pkg: pkg
-    }))
     .pipe(gulp.dest('./css'))
 });
 
@@ -82,9 +97,6 @@ gulp.task('js:minify', function() {
       '!./js/*.min.js'
     ])
     .pipe(uglify())
-    .pipe(header(banner, {
-      pkg: pkg
-    }))
     .pipe(rename({
       suffix: '.min'
     }))
@@ -107,10 +119,9 @@ gulp.task('browserSync', function() {
   });
 });
 
-// Watch task
+// Dev task
 gulp.task('dev', ['css', 'js', 'browserSync'], function() {
   gulp.watch('./scss/*.scss', ['css']);
   gulp.watch('./js/*.js', ['js']);
-  // Reloads the browser whenever HTML files change
-  gulp.watch('*.html', browserSync.reload);
+  gulp.watch('./*.html', browserSync.reload);
 });

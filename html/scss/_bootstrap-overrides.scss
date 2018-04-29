@@ -1,14 +1,31 @@
-.btn-secondary {
-  background-color: $secondary;
-  border-color: $secondary;
-  &:active,
-  &:focus,
-  &:hover {
-    background-color: darken($secondary, 10%) !important;
-    border-color: darken($secondary, 10%) !important;
-  }
+// Bootstrap overrides for this template
+.text-primary {
+  color: $primary !important;
 }
 
-.input {
-  font-weight: 300 !important;
+.btn {
+  font-weight: 700;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 300px;
+  @include sans-serif-font;
+}
+
+.btn-xl {
+  padding: 1rem 2rem;
+}
+
+.btn-primary {
+  background-color: $primary;
+  border-color: $primary;
+  &:hover,
+  &:focus,
+  &:active {
+    color: $white;
+    background-color: darken($primary, 5%) !important;
+  }
+  &:active,
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(240, 95, 64,.5) !important;
+  }
 }

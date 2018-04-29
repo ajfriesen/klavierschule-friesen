@@ -1,63 +1,37 @@
-.masthead {
-  position: relative;
-  overflow: hidden;
-  padding-bottom: 3rem;
-  .masthead-bg {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: fade-out($primary, 0.2);
-    transform: skewY(4deg);
-    transform-origin: bottom right;
+// Styling for the masthead
+header.masthead {
+  padding-top: 10rem;
+  padding-bottom: calc(10rem - 56px);
+  background-image: url('../img/header.jpg');
+  background-position: center center;
+  @include background-cover;
+  hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
-  .masthead-content {
-    h1 {
-      font-size: 2.5rem;
-    }
+  h1 {
+    font-size: 2rem;
+  }
+  p {
+    font-weight: 300;
+  }
+  @media (min-width: 768px) {
     p {
-      font-size: 1.2rem;
-      strong {
-        font-weight: 700;
-      }
-    }
-    .input-group-newsletter {
-      input {
-        font-size: 1rem;
-        padding: 1rem;
-      }
-      button {
-        font-size: 0.8rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        padding: 1rem;
-      }
+      font-size: 1.15rem;
     }
   }
-}
-
-@media (min-width: 768px) {
-  .masthead {
-    height: 100%;
-    width: 40.5rem;
+  @media (min-width: 992px) {
+    height: 100vh;
+    min-height: 650px;
+    padding-top: 0;
     padding-bottom: 0;
-    .masthead-bg {
-      transform: skewX(-8deg);
-      transform-origin: top right;
+    h1 {
+      font-size: 3rem;
     }
-    .masthead-content {
-      padding-left: 3rem;
-      padding-right: 10rem;
-      h1 {
-        font-size: 3.5rem;
-      }
-      p {
-        font-size: 1.3rem;
-      }
+  }
+  @media (min-width: 1200px) {
+    h1 {
+      font-size: 4rem;
     }
   }
 }
