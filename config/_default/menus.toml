@@ -25,12 +25,12 @@
 
 [[main]]
   name = "Weitere Infos"
-  url = "/weitere_informationen"
+  url = "#weitere_informationen"
   weight = 40
 
 [[main]]
   name = "Kontakt"
-  url = "#contact"
+  url = "#kontakt"
   weight = 60
 
 
