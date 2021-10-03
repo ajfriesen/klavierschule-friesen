@@ -1,0 +1,3 @@
+User-agent: *
+
+Sitemap: www.klavierschule-friesen.de/sitemap.xml
